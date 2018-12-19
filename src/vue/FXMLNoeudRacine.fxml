@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415" prefWidth="515" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.FXMLNoeudRacineController">
+   <top>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Gestion">
+            <items>
+              <MenuItem id="menuItemGestionInscription" fx:id="menuItemGestionInscription" mnemonicParsing="false" onAction="#handleGestionInscription" text="Inscription" />
+                  <MenuItem id="menuItemGestionRentabilite" fx:id="menuItemGestionRentabilite" mnemonicParsing="false" onAction="#handleGestionRentabilite" text="Rentabilité" />
+                  <MenuItem id="menuItemGestionSession" fx:id="menuItemGestionSession" mnemonicParsing="false" onAction="#handleGestionSession" text="Session" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+    </top>
+</BorderPane>

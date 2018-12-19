@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="385.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.FXMLAccueilController">
+   <children>
+      <Label layoutX="151.0" layoutY="14.0" text="FORMARMOR" textFill="#1306d0">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font></Label>
+      <ImageView fitHeight="265.0" fitWidth="532.0" layoutX="79.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Accueil.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="164.0" layoutY="343.0" text="Des formateurs à votre service">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

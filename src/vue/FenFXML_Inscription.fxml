@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.FenFXML_InscriptionControleur">
+    <stylesheets>
+        <URL value="@fenfxml_inscription.css" />
+    </stylesheets>
+   <children>
+      <Label id="lblNomClient" fx:id="lblNomClient" layoutX="14.0" layoutY="126.0" prefHeight="21.0" prefWidth="528.0" />
+      <TabPane prefHeight="556.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gestion inscription">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="508.0" prefWidth="607.0">
+                     <children>
+                        <TableView id="tableSessionsAutorisees" fx:id="tableSessionsAutorisees" layoutX="73.0" layoutY="89.0" prefHeight="201.0" prefWidth="583.0">
+                          <columns>
+                            <TableColumn id="colonneId" fx:id="colonneId" prefWidth="95.0" text="id" />
+                            <TableColumn id="colonneFormation_id" fx:id="colonneFormation_id" prefWidth="123.0" text="id formation" />
+                              <TableColumn id="colonneDate_debut" fx:id="colonneDate_debut" prefWidth="148.0" text="date début" />
+                              <TableColumn id="colonneNb_places" fx:id="colonneNb_places" prefWidth="109.0" text="nb places" />
+                              <TableColumn id="colonneNb_inscrits" fx:id="colonneNb_inscrits" prefWidth="105.0" text="nb inscrits" />
+                          </columns>
+                        </TableView>
+                        <Button id="btnInscription" fx:id="btnInscription" layoutX="76.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleInscription" prefHeight="60.0" prefWidth="577.0" text="INSCRIPTION A LA SESSION SELECTIONNEE" visible="false" />
+                        <ComboBox id="cmb_ChoixMatricule" fx:id="cmb_ChoixMatricule" layoutX="322.0" layoutY="41.0" onAction="#handleChoixMatricule" prefWidth="150.0" />
+                        <Label layoutX="248.0" layoutY="45.0" prefHeight="21.0" prefWidth="74.0" text="Candidat : " />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Gestion sessions">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="86.0" layoutY="35.0" prefHeight="200.0" prefWidth="557.0">
+                          <columns>
+                            <TableColumn prefWidth="102.0" text="Intitulé" />
+                            <TableColumn prefWidth="102.0" text="Niveau" />
+                              <TableColumn prefWidth="113.0" text="Nature" />
+                              <TableColumn prefWidth="124.0" text="Date" />
+                              <TableColumn minWidth="0.0" prefWidth="113.0" text="Editer le PDF" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Gestion rentabilité">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

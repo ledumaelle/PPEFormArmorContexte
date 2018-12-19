@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="339.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.FXMLGestionRentabiliteController">
+   <children>
+      <TableView id="tabSessionsAchevees" fx:id="tabSessionsAchevees" layoutX="27.0" layoutY="58.0" onMouseClicked="#handleDescriptionSession" prefHeight="201.0" prefWidth="772.0">
+        <columns>
+          <TableColumn fx:id="colonneFormations" maxWidth="135.0" minWidth="110.0" prefWidth="135.0" text="Formation" />
+          <TableColumn fx:id="colonneNiveau" maxWidth="135.0" minWidth="102.0" prefWidth="129.0" text="Niveau" />
+            <TableColumn fx:id="colonneType" maxWidth="117.0" minWidth="84.0" prefWidth="109.0" text="Type" />
+            <TableColumn fx:id="colonneDateD" maxWidth="134.0" minWidth="86.0" prefWidth="134.0" text="Date début" />
+            <TableColumn fx:id="colonneNbPlaces" maxWidth="138.0" minWidth="68.0" prefWidth="113.0" text="Nombre de places" />
+            <TableColumn fx:id="colonneNbInscrits" maxWidth="128.0" minWidth="40.0" prefWidth="128.0" text="Nombre d'inscrits" />
+        </columns>
+      </TableView>
+      <Label layoutX="211.0" layoutY="14.0" text="Afficher les sessions achevées " textFill="#1306d0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="64" fitWidth="150" layoutX="8" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/formationProfessionnelle.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

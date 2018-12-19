@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="339.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.FenFXML_GestionSessionController">
+    <children>
+       <TableView fx:id="tableSessionsAutorisees" layoutX="43.0" layoutY="48.0" prefHeight="200.0" prefWidth="515.0">
+         <columns>
+           <TableColumn fx:id="intitule" prefWidth="121.0" text="Intitulé" />
+           <TableColumn fx:id="niveau" prefWidth="136.0" text="Niveau" />
+             <TableColumn fx:id="nature" prefWidth="128.0" text="Nature" />
+             <TableColumn fx:id="date" prefWidth="129.0" text="Date" />
+         </columns>
+       </TableView>
+      <Button layoutX="202.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleEditePDF" text="Liste d'émargemement (pdf)" />
+      <ImageView fitHeight="64" fitWidth="150" layoutX="8" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/formationProfessionnelle.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="165.0" layoutY="7.0" text="Gestion des sessions futures" textFill="#1306d0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
