@@ -5,24 +5,36 @@
  */
 package controleur;
 
+import java.awt.Color;
+import java.awt.Paint;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import modele.Client;
 import modele.GestionSql;
 import modele.Session;
+import modele.Statut;
 
 /**
  * FXML Controller class
@@ -33,6 +45,9 @@ public class FXMLDescriptionSessionAcheveeController implements Initializable
 {
     private Stage dialogStage;
     private boolean okClick = false; 
+    ArrayList<Client> lesInscrits;
+    ArrayList<Client> lesAbscents;
+    ArrayList<String> nomAbscents;
     
     @FXML
     Label lblLibelle,lblDate, lblNbPlaces, lblNbInscrits, lblNombreAbsents, lblTauxRemplissage, lblCoutRevient, lblVente, lblMarge;
@@ -41,7 +56,7 @@ public class FXMLDescriptionSessionAcheveeController implements Initializable
     @FXML
     private TableColumn<Client, String> colEmploye;
     @FXML
-    private TableColumn<Client, Integer> colHoraire;
+    private TableColumn<Client, Double> colHoraire;
     
     Session maSession;
 
@@ -53,19 +68,22 @@ public class FXMLDescriptionSessionAcheveeController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        double NbPlaces,NbInscrits,coutDeRevient,CAFormation,Marge;
-        int NbAbsents; 
+        double NbPlaces,coutDeRevient,CAFormation,Marge;
+        int NbAbsents,NbInscrits; 
         String annee,mois,jour;
         NbPlaces = MainApp.getMaSessionSelectionnee().getNb_places();
-        NbInscrits = MainApp.getMaSessionSelectionnee().getNb_inscrits();
-        lblLibelle.setText(MainApp.getMaSessionSelectionnee().getLibFormation());
+        
+        lblLibelle.setText(MainApp.getMaSessionSelectionnee().getFormationNomNiveau());
         lblDate.setText(MainApp.getMaSessionSelectionnee().getDateModifier());
         lblNbPlaces.setText(String.valueOf(MainApp.getMaSessionSelectionnee().getNb_places()));
+           
+        NbInscrits = MainApp.getMaSessionSelectionnee().getNb_inscrits();
         lblNbInscrits.setText(String.valueOf(MainApp.getMaSessionSelectionnee().getNb_inscrits()));
-        NbAbsents = GestionSql.getNbAbsentsParSession(MainApp.getMaSessionSelectionnee().getId());        
-        double Taux = ((NbInscrits-NbAbsents)/NbPlaces) * 100;
+        NbAbsents = GestionSql.getNbAbsentsParSession(MainApp.getMaSessionSelectionnee().getId());  
         lblNombreAbsents.setText(String.valueOf(NbAbsents));
-        lblTauxRemplissage.setText(String.valueOf(Taux)+"%");
+        
+        double Taux = ((NbInscrits-NbAbsents)/NbPlaces) * 100;        
+        lblTauxRemplissage.setText(String.valueOf(Math.round(Taux))+"%");
         coutDeRevient = GestionSql.getCoutRevientFormation(MainApp.getMaSessionSelectionnee().getLaFormation().getId());
         lblCoutRevient.setText(String.valueOf(coutDeRevient)+"€");
         CAFormation = GestionSql.getVenteFormation(MainApp.getMaSessionSelectionnee().getId());
@@ -82,17 +100,57 @@ public class FXMLDescriptionSessionAcheveeController implements Initializable
             lblMarge.setStyle("-fx-text-fill: red;");
         }       
         
-         // Initialise le TableView tableSessionsAutorisees
-        colEmploye.setCellValueFactory(new PropertyValueFactory<Client, String>("Nom"));
-        colHoraire.setCellValueFactory(new PropertyValueFactory<Client, Integer>("TauxHoraire"));
+        colEmploye.setCellValueFactory(new PropertyValueFactory<Client, String>("NomComplet"));
+        colHoraire.setCellValueFactory(new PropertyValueFactory<Client, Double>("TauxHoraire"));
         
-        ArrayList<Client> lesParticipants = GestionSql.getClientsInscritParSession(MainApp.getMaSessionSelectionnee().getId());
-        ObservableList<Client> lesClients= FXCollections.observableArrayList(lesParticipants);
+        lesInscrits = GestionSql.getClientsInscritParSession(MainApp.getMaSessionSelectionnee().getId());
+        lesAbscents= GestionSql.getClientsAbscentsParSession(MainApp.getMaSessionSelectionnee().getId());
+        nomAbscents = new  ArrayList<String>();
+        
+        for (int i=0;i<lesAbscents.size();i++)
+        {
+            nomAbscents.add(lesAbscents.get(i).getNomComplet());
+        }
+        
+        ObservableList<Client> lesClients= FXCollections.observableArrayList(lesInscrits);        
         
         // Pour redimensionner les colonnes automatiquement
-        tabParticipants.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);            
+        tabParticipants.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);       
+        
+        //COULEUR            
         tabParticipants.setItems(lesClients); 
-    }   
+        
+        colEmploye.setCellFactory(new Callback<TableColumn<Client, String>, TableCell<Client, String>>() 
+        {   
+            @Override 
+            public TableCell<Client, String> call(TableColumn<Client, String> tc) 
+            { 
+                return new ClientTableCell(); 
+            } 
+        });
+    }
+    
+    public class ClientTableCell extends TableCell<Client, String> 
+    { 
+  
+        @Override 
+        protected void updateItem(String item, boolean empty) 
+        { 
+            super.updateItem(item, empty); 
+            setGraphic(null);
+            setText(null);
+            if (!empty && item != null && nomAbscents.contains(item)) 
+            { 
+                setStyle("-fx-background-color: salmon;");
+                setText(item);
+            } 
+            else
+            {
+                setText(item);
+            }
+        }     
+    }
+
     
     public void setDialogStage(Stage dialogStage)
     {

@@ -60,6 +60,11 @@ public class Session
         return LaFormation.getLibelle(); 
     }
     
+    public String getFormationNomNiveau()
+    {
+        return LaFormation.getLibelle() + " - " + LaFormation.getNiveau(); 
+    }
+    
     public String getNiveau ()
     {
         return LaFormation.getNiveau();

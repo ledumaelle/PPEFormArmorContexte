@@ -183,7 +183,7 @@ private void addMetaData(Document document) {
         throws BadElementException, DocumentException {
         PdfPTable table = new PdfPTable(4);
         
-        PdfPCell c1 = new PdfPCell(new Phrase("Nom"));
+        PdfPCell c1 = new PdfPCell(new Phrase("NomComplet"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
         c1 = new PdfPCell(new Phrase("Adresse"));
@@ -201,7 +201,7 @@ private void addMetaData(Document document) {
         
         for (Client UnClient : SessionSelect.getLesClientsInscrits()) 
         {
-            table.addCell(UnClient.getNom());
+            table.addCell(UnClient.getNom() + " " +UnClient.getPrenom());
             table.addCell(UnClient.getAdresse() + " "+ UnClient.getCp() + " "+ UnClient.getVille());
             table.addCell(UnClient.getEmail());
             table.addCell("\n ");

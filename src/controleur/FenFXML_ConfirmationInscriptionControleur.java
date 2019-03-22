@@ -39,7 +39,7 @@ public class FenFXML_ConfirmationInscriptionControleur implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        txtNom.setText(MainApp.getMonClientSelectionne().getNom());
+        txtNom.setText(MainApp.getMonClientSelectionne().getNom() + " " + MainApp.getMonClientSelectionne().getPrenom());
         txtDate.setText(String.valueOf(MainApp.getMaSessionSelectionnee().getDate_debut()));
         txtSession.setText(MainApp.getMaSessionSelectionnee().getLibFormation());
         txtNbInscrits.setText(String.valueOf(MainApp.getMaSessionSelectionnee().getNb_inscrits()));

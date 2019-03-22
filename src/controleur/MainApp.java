@@ -61,29 +61,6 @@ public class MainApp extends Application
         AfficherAccueil();
     }
     
-    /*@Override
-    public void start(Stage primaryStage)
-    {
-        this.primaryStage = primaryStage;
-        try
-        {
-            this.primaryStage.setTitle("Gestion des inscriptions aux sessions de formations");
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/vue/FenFXML_Inscription.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            LesSessions = GestionSql.getLesSessions();
-            for (Session Unesession : LesSessions) {
-                System.out.println(Unesession.toString());
-            }
-        }
-        catch (IOException e)
-        {
-            System.out.println("Erreur chargement fenetre principale : " + e.getMessage());
-        }
-    }*/
-    
     public void creationFenConfirm()
     {
         

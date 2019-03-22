@@ -68,11 +68,15 @@ public class FXMLGestionRentabiliteController implements Initializable
         
         // Pour redimensionner les colonnes automatiquement
         tabSessionsAchevees.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);            
-        tabSessionsAchevees.setItems(GestionSql.getLesSessions()); 
+        tabSessionsAchevees.setItems(GestionSql.getLesSessionsAchevees()); 
     }  
     
     public boolean handleDescriptionSession()
     {  
+        if(tabSessionsAchevees.getSelectionModel().isEmpty())
+        {
+            return false; 
+        }
         MainApp.setMaSessionSelectionnee((Session) tabSessionsAchevees.getSelectionModel().getSelectedItem());  
         Session UneSession = MainApp.getMaSessionSelectionnee();
         ArrayList<Client> lesClientsInscrits =  GestionSql.getClientsInscritParSession(UneSession.getId());
