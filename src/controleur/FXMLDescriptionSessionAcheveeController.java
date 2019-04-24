@@ -5,36 +5,23 @@
  */
 package controleur;
 
-import java.awt.Color;
-import java.awt.Paint;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import modele.Client;
 import modele.GestionSql;
 import modele.Session;
-import modele.Statut;
 
 /**
  * FXML Controller class
